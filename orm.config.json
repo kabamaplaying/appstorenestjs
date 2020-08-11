@@ -1,0 +1,13 @@
+{
+    "type": "postgres",
+    "username": "postgres",
+    "password": "admin",
+    "host": "localhost",
+    "port": 5432,
+    "database": "appstore",
+    "entities": ["src/**/**/*.entity{.ts,.js}"],
+    "migrations": ["src/infrastructure/migrations/*{.ts,.js}"],
+    "cli": {
+        "migrationsDir": "src/infrastructure/migrations"
+    }
+}
