@@ -1,4 +1,3 @@
-
 import { Usuario } from './../usuario.entity';
 import {
   Controller,
@@ -11,7 +10,6 @@ import {
   ParseIntPipe,
 } from '@nestjs/common';
 import { UserService } from '../user.service';
- 
 
 @Controller('users')
 export class UsuarioController {
@@ -24,7 +22,7 @@ export class UsuarioController {
   }
 
   @Get()
-  public async  usuarios(): Promise<Usuario[]> {
+  public async usuarios(): Promise<Usuario[]> {
     const users = await this._userService.getAll();
     return users;
   }
@@ -48,5 +46,13 @@ export class UsuarioController {
   async deleteUser(@Param('id', ParseIntPipe) id: number) {
     await this._userService.delete(id);
     return true;
+  }
+
+  @Post('setRole/:userId/roleId')
+  async setRoleToUser(
+    @Param('userId', ParseIntPipe) userId: number,
+    @Param('roleId', ParseIntPipe) roleId: number,
+  ) {
+    return this._userService.setRoleToUser(userId, roleId);
   }
 }
